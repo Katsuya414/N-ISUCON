@@ -112,6 +112,41 @@ xbuild/php-install    -f 7.1.9   /home/isucon/local/php -- --disable-phar --with
 
 ```
 
+ベンチマーカーの準備
+Goの環境変数設定
+```
+export PATH=$HOME/local/go/bin:$HOME/go/bin:$PATH
+go get github.com/constabulary/gb/...   # 初回のみ
+cd ~/isubata/bench
+gb vendor restore
+make
+```
+
+初期データ設定
+```
+./bin/gen-initial-dataset
+```
+
+データベース初期化
+```
+$ sudo ./db/init.sh
+$ sudo mysql
+mysql> CREATE USER isucon@'%' IDENTIFIED BY 'isucon';
+mysql> GRANT ALL on *.* TO isucon@'%';
+mysql> CREATE USER isucon@'localhost' IDENTIFIED BY 'isucon';
+mysql> GRANT ALL on *.* TO isucon@'localhost';
+zcat ~/isubata/bench/isucon7q-initial-dataset.sql.gz
+```
+
+nginx
+
+```
+$ sudo cp ~/shima/files/app/nginx.* /etc/nginx/sites-available
+$ cd /etc/nginx/sites-enabled
+$ sudo unlink default
+$ sudo ln -s ../sites-available/nginx.conf
+$ sudo systemctl restart nginx
+```
 
 ## インフラ担当
 - ポータルサイトにログインしてsshできることを確認
