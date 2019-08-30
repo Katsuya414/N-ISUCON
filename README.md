@@ -44,6 +44,44 @@
     "message": "ok",
     }
 - なるほど
+```
+sudo apt update
+sudo apt install -y git vim mysql-server nginx
+sudo update-alternatives --set editor /usr/bin/vim.basic
+```
+
+
+isucon ユーザーを作成
+```
+sudo adduser isucon
+
+isucon ALL=NOPASSWD: ALL
+```
+
+isucon ユーザーでログインできるようにする
+
+```
+sudo su isucon
+cd
+mkdir .ssh/
+chmod 700 .ssh
+cd .ssh
+touch authorized_keys
+chmod 600 authorized_keys  # authorized_keys に公開鍵を追加する
+```
+
+ssh を秘密鍵でのみログインできるようにする
+```
+sudo vi /etc/ssh/sshd_config
+
+#PasswordAuthentication yes
+PasswordAuthentication no
+
+sudo service ssh restart
+```
+
+
+
 ## インフラ担当
 - ポータルサイトにログインしてsshできることを確認
 - 全メンバーのssh鍵を登録する
