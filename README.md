@@ -14,7 +14,7 @@
   "message": "ok",
   }
 
-
+- https://muttan1203.hatenablog.com/entry/isucon_practice_setup
 - https://blog.yuuk.io/entry/web-operations-isucon
 - Perlに切り替え
 - 基本的なお作法
@@ -158,6 +158,8 @@ $ sudo systemctl restart nginx
 - ハードウェアの構成を調べる
 - 動作しているプロセスを確認しておおよその構成を理解する
 - データベースなど各アプリケーションの設定値を確認してgitにコミットする
+- Mysqlのshow logを読む
+- CPUの気持ちになる。
 
 
 
